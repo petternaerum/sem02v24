@@ -20,10 +20,11 @@ RUN mkdir hacking \
 RUN git config --global user.email "petterkl@uia.no" \
 && git config --global user.name "petternaerum" \
 && git config --global url."https://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:@github.com/".insteadOf "https://github.com" \
-&& mkdir -p github.com/GITHUB-petternaerum
+&& mkdir -p github.com/petternaerum
 USER root
-RUN curl -SL https://go.dev/dl/go1.22.1.linux-386.tar.gz\ | tar xvz -C /usr/local
-USER Petter
+RUN curl -SL https://go.dev/dl/go1.21.7.linux-amd64.tar.gz \ 
+| tar xvz -C /usr/local
+USER petternaerum
 SHELL ["/bin/bash", "-c"]
 RUN mkdir -p $HOME/go/{src,bin}
 ENV GOPATH="/home/petternaerum/go"
