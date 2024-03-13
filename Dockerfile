@@ -1,5 +1,6 @@
 FROM ubuntu:24.04
 RUN apt-get update \
+RUN apt-get update \
 && apt-get dist-upgrade -y \
 && apt-get autoremove -y \
 && apt-get autoclean -y \
@@ -8,7 +9,14 @@ sudo \
 nano \
 wget \
 curl \
-git
+git \
+build-essential \
+gcc \
+openjdk-21-jdk \
+mono-complete \
+python3 \
+strace \
+valgrind
 RUN useradd -G sudo -m -d /home/petternaerum -s /bin/bash -p "$(openssl passwd -1 Petter)" petternaerum
 USER petternaerum
 WORKDIR /home/petternaerum
@@ -29,3 +37,4 @@ SHELL ["/bin/bash", "-c"]
 RUN mkdir -p $HOME/go/{src,bin}
 ENV GOPATH="/home/petternaerum/go"
 ENV PATH="${PATH}:${GOPATH}/bin:/usr/local/go/bin"
+ARG DEBIAN_FRONTEND=noninteractive
